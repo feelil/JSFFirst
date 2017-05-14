@@ -2,14 +2,14 @@ package com.abank.pojo;
 
 public class Account {
 	
-	private int accountId;
+	private Integer accountId;
 	private String accountNumber;
 	private String ibanNumber;
 	private String currencyCode;
-	public int getAccountId() {
+	public Integer getAccountId() {
 		return accountId;
 	}
-	public void setAccountId(int accountId) {
+	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
 	public String getAccountNumber() {

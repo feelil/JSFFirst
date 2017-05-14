@@ -23,6 +23,7 @@ public class MoneyOrderBean implements Serializable {
     private String targetIBAN;
     private Double amount;
     private String explanation;
+    private List<Account> accounts;
     
 	public String getExplanation() {
 		return explanation;
@@ -79,9 +80,31 @@ public class MoneyOrderBean implements Serializable {
 	  public void init() {
 	   sourceAccount=new Account();
 	   //sourceAccount.setAccountNumber("123-456-78999");
+	   
+	   accounts=new ArrayList<Account>();
+		 Account tempAcc=null;
+		 for (int i = 0; i < 5; i++) {
+			tempAcc=new Account();
+			tempAcc.setAccountId(i);
+			tempAcc.setAccountNumber(i + "456-789");
+			tempAcc.setCurrencyCode("TRY");
+			tempAcc.setIbanNumber("TR-" + i + "- 98583213213223");
+			accounts.add(tempAcc);
+		}
 	   }
-	 
-	 public List<Account> getCustomerAccounts(){
+	 public Account GetAccount(Integer id){
+		 if (id == null){
+	            throw new IllegalArgumentException("no id provided");
+	        }
+	        for (Account acc : accounts){
+	            if (id.equals(acc.getAccountId())){
+	                return acc;
+	            }
+	        }
+	        return null;
+	 }
+	 /*
+ 	 public List<Account> getCustomerAccounts(){
 		 List<Account> rValue=new ArrayList<Account>();
 		 Account tempAcc=null;
 		 for (int i = 0; i < 5; i++) {
@@ -95,5 +118,14 @@ public class MoneyOrderBean implements Serializable {
 		 
 		 return rValue;
 	 }
+ 	 */
+
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
 
 }
